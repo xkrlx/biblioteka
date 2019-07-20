@@ -20,9 +20,8 @@ class CreateBooksTable extends Migration
             $table->string('author');
             $table->string('publisher');
             $table->integer('pages');
-            $table->integer('quantity');
             $table->longText('description');
-            $table->integer('days');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

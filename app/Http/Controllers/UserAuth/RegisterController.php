@@ -46,12 +46,15 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'pesel' => 'required|pesel',
         ]);
     }
 
@@ -67,6 +70,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'pesel' => $data['pesel'],
+            'active' => false,
         ]);
     }
 
@@ -85,8 +90,4 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\Contracts\Auth\StatefulGuard
      */
-    protected function guard()
-    {
-        return Auth::guard('user');
-    }
 }

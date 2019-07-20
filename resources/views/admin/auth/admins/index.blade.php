@@ -15,6 +15,7 @@
                                 <tr>
                                     <th>Imię</th>
                                     <th>Email</th>
+                                    <th>Rola</th>
                                     <th>Akcje</th>
                                 </tr>
                                 </thead>
@@ -23,6 +24,7 @@
                                     <tr>
                                         <td>{{$admin->name}}</td>
                                         <td>{{$admin->email}}</td>
+                                        <td>{{$admin->role_id}}</td>
                                         <td>
                                             <a href="{{route('admin.edit.admin',$admin)}}">Edytuj</a>
                                             {!! Form::open(['route'=>['admin.delete.admin',$admin],'method'=>'delete']) !!}

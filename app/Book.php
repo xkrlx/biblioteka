@@ -12,9 +12,7 @@ class Book extends Model
         'author',
         'publisher',
         'pages',
-        'quantity',
         'description',
-        'days',
         'photo',
     ];
 }

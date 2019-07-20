@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminAuth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Hesto\MultiAuth\Traits\LogsoutGuard;
 
@@ -59,5 +60,9 @@ class LoginController extends Controller
     protected function guard()
     {
         return Auth::guard('admin');
+    }
+    public function credentials(Request $request)
+    {
+        return ['email'=>$request->{$this->username()},'password'=>$request->password];
     }
 }

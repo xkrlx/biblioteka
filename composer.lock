@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cceb52a9a7a1e48598f7b0b584025c9d",
+    "content-hash": "c82f36f44cc15bf04fdfa6c26e545f6f",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -538,6 +538,56 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "kduma/polish-validator",
+            "version": "v1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kduma-OSS/L5-polish-validator-rules.git",
+                "reference": "ed5f7c2c96f82d6dc30a0b43bae30c310caab675"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kduma-OSS/L5-polish-validator-rules/zipball/ed5f7c2c96f82d6dc30a0b43bae30c310caab675",
+                "reference": "ed5f7c2c96f82d6dc30a0b43bae30c310caab675",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "KDuma\\Validator\\PolishValidatorRulesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "KDuma\\Validator\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Krystian Duma",
+                    "email": "git@kduma.tk"
+                }
+            ],
+            "description": "polish Validation rules for Laravel 5 Validator",
+            "keywords": [
+                "laravel",
+                "pesel",
+                "polish",
+                "validation"
+            ],
+            "time": "2018-10-27T11:33:29+00:00"
         },
         {
             "name": "laravel/framework",

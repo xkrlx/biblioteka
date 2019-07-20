@@ -12,10 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('user/login');
 });
 
 Route::group(['prefix' => 'admin'], function () {
+  Route::get('/', 'AdminAuth\LoginController@showLoginForm')->name('login');
   Route::get('/login', 'AdminAuth\LoginController@showLoginForm')->name('login');
   Route::post('/login', 'AdminAuth\LoginController@login');
   Route::post('/logout', 'AdminAuth\LoginController@logout')->name('logout');
@@ -27,9 +28,11 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/password/reset', 'AdminAuth\ResetPasswordController@reset')->name('password.email');
   Route::get('/password/reset', 'AdminAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
   Route::get('/password/reset/{token}', 'AdminAuth\ResetPasswordController@showResetForm');
+
 });
 
 Route::group(['prefix' => 'user'], function () {
+  Route::get('/', 'UserAuth\LoginController@showLoginForm')->name('login');
   Route::get('/login', 'UserAuth\LoginController@showLoginForm')->name('login');
   Route::post('/login', 'UserAuth\LoginController@login');
   Route::post('/logout', 'UserAuth\LoginController@logout')->name('logout');
@@ -43,6 +46,6 @@ Route::group(['prefix' => 'user'], function () {
   Route::get('/password/reset/{token}', 'UserAuth\ResetPasswordController@showResetForm');
 });
 
-Auth::routes();
+//Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

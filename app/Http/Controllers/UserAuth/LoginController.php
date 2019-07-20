@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\UserAuth;
 
 use App\Http\Controllers\Controller;
+//use http\Env\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Hesto\MultiAuth\Traits\LogsoutGuard;
+use Illuminate\Http\Request;
+
 
 class LoginController extends Controller
 {
@@ -60,4 +63,11 @@ class LoginController extends Controller
     {
         return Auth::guard('user');
     }
+
+    public function credentials(Request $request)
+    {
+        return ['email'=>$request->{$this->username()},'password'=>$request->password,'active'=>'1'];
+    }
+
+
 }

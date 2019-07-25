@@ -15,6 +15,7 @@ class CreateBooksTable extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('book_id')->unique();
             $table->string('title');
             $table->year('year');
             $table->string('author');
@@ -22,6 +23,7 @@ class CreateBooksTable extends Migration
             $table->integer('pages');
             $table->longText('description');
             $table->string('photo')->nullable();
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

@@ -4,15 +4,19 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 ">
+                @include('flash-message')
                 <div class="card">
                     <div class="card-header">Dodaj</div>
                     <div class="card-body">
                         <div class="col-12">
-                            Numer książki: {{$book->id+1}}
-                        </div>
-
-                        <div class="col-12">
                             {!! Form::open(['route'=>'admin.create.book','files'=>true]) !!}
+                                {!! Form::number('book_id',null,['placeholder'=>'Numer książki']) !!}
+                                @if ($errors->has('book_id'))
+                                    <span class="help-block">
+                <strong>{{ $errors->first('book_id') }}</strong>
+                                @endif
+                            </div>
+                        <div class="col-12">
                             {!! Form::text('title',null,['placeholder'=>'Tytuł']) !!}
                             @if ($errors->has('title'))
                                 <span class="help-block">

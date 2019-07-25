@@ -13,6 +13,12 @@
 
                         <div class="col-12">
                             <table class="table-responsive">
+                                @if(count($bookings) == 0)
+                                    <div class="alert alert-warning">
+                                        <strong>Brak danych do wyświetlenia</strong>
+                                    </div>
+                                @else
+
                                 <thead>
                                 <tr>
                                     <th>Id wypożyczenia</th>
@@ -21,7 +27,7 @@
                                     <th>Numer książki</th>
                                     <th>Tytuł książki</th>
                                     <th>Data wypożyczenia</th>
-                                    <th>Data zwrotu</th>
+                                    <th>Data zwrotu książki</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -30,19 +36,18 @@
                                         <td>{{$booking->id}}</td>
                                         <td>{{$booking->user_id}}</td>
                                         <td>{{$booking->user->name}}</td>
-                                        <td>{{$booking->book_id}}</td>
+                                        <td>{{$booking->book->book_id}}</td>
                                         <td>{{$booking->book->title}}</td>
                                         <td>{{$booking->date_from}}</td>
-                                        <td>{{$booking->date_to}}</td>
-
-                                        <td>
-                                        </td>
+                                        <td>{{$booking->date_end}}</td>
+                                        <td><a href="{{route('user.show',$booking->book_id)}}">Pokaż książke</a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
 
                             {{$bookings->links()}}
+                            @endif
 
                             <a href="{{route('user.home'),'Powrót'}}">Powrót</a>
                         </div>

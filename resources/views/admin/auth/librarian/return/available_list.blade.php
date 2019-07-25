@@ -7,12 +7,16 @@
                 @include('flash-message')
                 <div class="card">
                     <div class="card-header">
-                        Lista wypożyczonych książek
+                        Lista dostępnych książek
+                        <b>{{$books->total()}}</b>
                     </div>
                     <div class="card-body">
-
+                        @if(count($books) == 0)
+                            <div class="alert alert-warning">
+                                <strong>Brak danych do wyświetlenia</strong>
+                            </div>
+                        @else
                         <div class="col-12">
-                            <a href="{{route('admin.add.book')}}">Dodaj książkę</a>
                             <table class="table-responsive">
                                 <thead>
                                 <tr>
@@ -47,6 +51,7 @@
                             </table>
 
                             {{$books->links()}}
+                            @endif
 
                             <a href="{{route('admin.index.library'),'Powrót'}}">Powrót</a>
                         </div>

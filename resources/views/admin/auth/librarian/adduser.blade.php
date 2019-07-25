@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 ">
+                @include('flash-message')
                 <div class="card">
                     <div class="card-header">Dodaj</div>
                     <div class="card-body">
@@ -37,6 +38,7 @@
                             @endif
 
                             {!! Form::submit('Dodaj użytkownika') !!}
+                            {!! link_to(route('admin.index.library'), 'Powrót') !!}
                             {!! Form::close() !!}
                         </div>
                     </div>

@@ -16,12 +16,13 @@ class CreateBookingsTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
             $table->unsignedInteger('book_id');
             $table->foreign('book_id')->references('id')->on('books');
             $table->date('date_from');
             $table->date('date_to');
-            $table->date('end_date');
+            $table->date('date_end')->nullable();
+            $table->boolean('active');
             $table->timestamps();
         });
     }

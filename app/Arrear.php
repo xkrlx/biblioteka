@@ -11,5 +11,6 @@ class Arrear extends Model
         'user_id',
         'cost',
         'days',
+        'paid_status',
     ];
 }

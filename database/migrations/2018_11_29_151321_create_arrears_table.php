@@ -15,12 +15,13 @@ class CreateArrearsTable extends Migration
     {
         Schema::create('arrears', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('booking_id');
+            $table->unsignedInteger('booking_id')->unique();
             $table->foreign('booking_id')->references('id')->on('bookings');
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->double('cost',12,2);
+            $table->foreign('user_id')->references('id')->on('users')->ondelete('cascade');
+            $table->integer('cost');
             $table->integer('days');
+            $table->boolean('paid_status');
             $table->timestamps();
         });
     }

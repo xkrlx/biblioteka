@@ -6,10 +6,10 @@
             <div class="col-md-12 ">
                 @include('flash-message')
                 <div class="card">
-                    <div class="card-header">Wypożyczanie książki</div>
+                    <div class="card-header">Zwrot książki</div>
                     <div class="card-body">
                         <div class="col-12">
-                            {!! Form::open(['route'=>'admin.confirm.booking']) !!}
+                            {!! Form::open(['route'=>'admin.index_books.return']) !!}
                             {!! Form::label('Podaj id użytkownika zwracającego książke:') !!}
                             {!! Form::number('user_id',null) !!}
                             @if ($errors->has('user_id'))
@@ -19,7 +19,7 @@
                             @endif
                         </div>
                         <div class="col-12">
-                            {!! Form::submit('Kontunuuj') !!}
+                            {!! Form::submit('Przejdź dalej ') !!}
                             {!! link_to(route('admin.index.library'), 'Powrót') !!}
                         </div>
 

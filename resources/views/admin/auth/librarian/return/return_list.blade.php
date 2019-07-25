@@ -6,11 +6,16 @@
             <div class="col-md-12 ">
                 @include('flash-message')
                 <div class="card">
-                    <div class="card-header">Lista wypożyczonych książek</div>
+                    <div class="card-header">
+                        Lista wypożyczonych książek <b>{{$books->total()}}</b>
+                    </div>
                     <div class="card-body">
-
+                        @if(count($books) == 0)
+                            <div class="alert alert-warning">
+                                <strong>Brak danych do wyświetlenia</strong>
+                            </div>
+                        @else
                         <div class="col-12">
-                            <a href="{{route('admin.add.book')}}">Dodaj książkę</a>
                             <table class="table-responsive">
                                 <thead>
                                 <tr>
@@ -25,7 +30,7 @@
                                 <tbody>
                                 @foreach($books as $i =>$book)
                                     <tr>
-                                        <td>{{$book->id}}</td>
+                                        <td>{{$book->book_id}}</td>
                                         <td>{{$book->title}}</td>
                                         <td>{{$book->year}}</td>
                                         <td>{{$book->author}}</td>
@@ -38,10 +43,6 @@
                                         @endif
 
                                         <td>
-                                            <a href="{{route('admin.edit.book',$book)}}">Edytuj</a>
-                                            {{--                                            {!! Form::open(['route'=>['admin.delete.book',$admin],'method'=>'delete']) !!}--}}
-                                            {{--                                            {!! Form::submit('Usuń') !!}--}}
-                                            {{--                                            {!! Form::close() !!}--}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -49,6 +50,7 @@
                             </table>
 
                             {{$books->links()}}
+                            @endif
 
                             <a href="{{route('admin.index.library'),'Powrót'}}">Powrót</a>
                         </div>

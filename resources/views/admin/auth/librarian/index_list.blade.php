@@ -4,10 +4,15 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 ">
+                @include('flash-message')
                 <div class="card">
-                    <div class="card-header">Lista</div>
+                    <div class="card-header">Lista książek {{$books->total()}}</div>
                     <div class="card-body">
-
+                        @if(count($books) == 0)
+                            <div class="alert alert-warning">
+                                <strong>Brak danych do wyświetlenia</strong>
+                            </div>
+                        @else
                         <div class="col-12">
                             <a href="{{route('admin.add.book')}}">Dodaj książkę</a>
                             <table class="table-responsive">
@@ -24,7 +29,7 @@
                                 <tbody>
                                 @foreach($books as $i =>$book)
                                     <tr>
-                                        <td>{{$book->id}}</td>
+                                        <td>{{$book->book_id}}</td>
                                         <td>{{$book->title}}</td>
                                         <td>{{$book->year}}</td>
                                         <td>{{$book->author}}</td>
@@ -48,6 +53,9 @@
                             </table>
 
                             {{$books->links()}}
+                            @endif
+
+                            <a href="{{route('admin.index.library'),'Powrót'}}">Powrót</a>
                         </div>
                     </div>
                 </div>

@@ -11,6 +11,17 @@ class Booking extends Model
         'book_id',
         'date_from',
         'date_to',
-        'end_date',
+        'date_end',
+        'active',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 }

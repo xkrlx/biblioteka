@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\AdminAuth;
 
+use App\Arrear;
+use App\Booking;
+use App\DeleteUser;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,7 +20,7 @@ class UsersController extends Controller
     {
         $this->validate($request,[
             'name'=>'required',
-            'email'=>'required|email|unique:admins',
+            'email'=>'required|email|unique:users',
             'password'=>'required|confirmed',
             'pesel' =>'required|pesel|unique:users',
         ],[
@@ -63,9 +66,14 @@ class UsersController extends Controller
 
     public function destroy(User $user)
     {
-        $user->delete();
+        if(Booking::where('user_id',$user->id)->where('active',true)->first() or Arrear::where('user_id',$user->id)->where('paid_status','false')->first()){
+            return redirect()->back()->with('error','Użytkownik ma aktywne wypożyczenia lub nieopłaconą kare');
+        }
+        else{
+            $user->delete();
 
-        return redirect()->back();
+            return redirect()->back();
+        }
     }
 
     public function edit(User $user)
@@ -77,7 +85,7 @@ class UsersController extends Controller
     {
         $this->validate($request,[
             'name'=>'required',
-            'email'=>'required|email|unique:admins',
+            'email'=>'required|email',
             'pesel' =>'required|pesel',
         ],[
             'name.required'=>'Wpisz imię',
@@ -91,6 +99,31 @@ class UsersController extends Controller
             'pesel' => $request->pesel,
         ]);
         return redirect()->route('admin.index2.user');
+    }
+
+    public function delete_accounts()
+    {
+
+        $deletes=DeleteUser::where('status',false)->paginate('10');
+
+        return view('admin.auth.librarian.delete_accounts',compact('deletes'));
+    }
+
+    public function destroy_account($delete_id)
+    {
+        $delete=DeleteUser::where('id',$delete_id)->first();
+        $user=User::where('id',$delete->user_id)->first();
+
+        if(Booking::where('user_id',$user->id)->where('active',true)->first() or Arrear::where('user_id',$user->id)->where('paid_status','false')->first()){
+            return redirect()->back()->with('error','Użytkownik ma aktywne wypożyczenia lub nieopłaconą kare');
+        }
+        else{
+            $delete->update(['status' => true]);
+
+            $user->delete();
+
+            return redirect()->back()->with('success','Konto zostało usunięte');
+        }
     }
 
 }

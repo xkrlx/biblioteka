@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     protected $fillable = [
+        'book_id',
         'title',
         'year',
         'author',
@@ -15,4 +16,9 @@ class Book extends Model
         'description',
         'photo',
     ];
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
 }

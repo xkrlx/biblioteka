@@ -60,6 +60,30 @@ Route::group([
 
     Route::delete('/library/refuse/{user}','AdminAuth\UsersController@destroy')->name('delete.user');
 
+    Route::get('/library/delete','AdminAuth\UsersController@delete_accounts')->name('delete_accounts.user');
+    Route::delete('/library/delete/{delete}','AdminAuth\UsersController@destroy_account')->name('destroy_account.user');
+
+    //Wypożyczanie książek
+    Route::get('/library/booking', 'AdminAuth\BookingController@index')->name('index.booking');
+    Route::post('/library/booking','AdminAuth\BookingController@confirm')->name('confirm.booking');
+    Route::post('/library/booking/{booking}','AdminAuth\BookingController@book')->name('book.booking');
+
+    //Zwrot książki
+    Route::get('/library/return-list', 'AdminAuth\ReturnController@index')->name('index.return_list');
+    Route::get('/library/available-list', 'AdminAuth\ReturnController@available')->name('index.available');
+
+    Route::get('/library/return', 'AdminAuth\ReturnController@index2')->name('index.return');
+    Route::post('/library/return', 'AdminAuth\ReturnController@index_books')->name('index_books.return');
+    Route::get('/library/return/{booking}', 'AdminAuth\ReturnController@confirm')->name('confirm.return');
+    Route::post('/library/return/{booking}','AdminAuth\ReturnController@return')->name('return.return');
+
+    Route::get('/library/bookings', 'AdminAuth\ReturnController@bookings')->name('bookings.return');
+
+    //penalties
+    Route::get('/library/unpaid','AdminAuth\ArrearsController@unpaid')->name('unpaid.penalties');
+    Route::get('/library/paid','AdminAuth\ArrearsController@paid')->name('paid.penalties');
+    Route::post('/library/pay/{penalty}','AdminAuth\ArrearsController@pay')->name('pay.penalties');
+
 });
 
 

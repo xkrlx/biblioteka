@@ -20,9 +20,17 @@ class UserSeeder extends Seeder
                 'name' => $faker->name,
                 'email' => $faker->unique()->safeEmail,
                 'password' => bcrypt('password'),
-                'pesel'=> '99121207150'+$i,
+                'pesel'=> 99121207150+$i,
                 'active' => false,
             ]);
         }
+
+        User::create([
+           'name'=>'user',
+           'email' => 'user@example.com',
+           'password'=>bcrypt('user1234'),
+            'pesel' =>'12345678901',
+            'active'=>true,
+        ]);
     }
 }

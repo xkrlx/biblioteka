@@ -39,4 +39,11 @@ class User extends Authenticatable
         $this->notify(new UserResetPassword($token));
     }
 
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+
+
 }

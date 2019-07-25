@@ -4,10 +4,15 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 ">
+                @include('flash-message')
                 <div class="card">
-                    <div class="card-header">Lista</div>
+                    <div class="card-header">Lista użytkowników <b>{{$users->total()}}</b></div>
                     <div class="card-body">
-
+                        @if(count($users) == 0)
+                            <div class="alert alert-warning">
+                                <strong>Brak danych do wyświetlenia</strong>
+                            </div>
+                        @else
                         <div class="col-12">
                             <a href="{{route('admin.add.user')}}">Stwórz nowego użytkownika</a>
                             <table class="table-responsive">
@@ -45,6 +50,8 @@
                             </table>
 
                             {{$users->links()}}
+                            @endif
+                            <a href="{{route('admin.index.library'),'Powrót'}}">Powrót</a>
                         </div>
                     </div>
                 </div>

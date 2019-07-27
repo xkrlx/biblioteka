@@ -43,7 +43,7 @@
                             {{$penalties->links()}}
                             @endif
 
-                            <a href="{{route('admin.index.library'),'Powrót'}}">Powrót</a>
+                            <a href="{{route('admin.index.viewer'),'Powrót'}}">Powrót</a>
                         </div>
                     </div>
                 </div>

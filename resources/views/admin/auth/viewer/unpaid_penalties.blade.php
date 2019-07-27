@@ -35,11 +35,6 @@
                                             <td>{{$penalty->booking_id}}</td>
                                             <td>{{$penalty->cost}}</td>
                                             <td>{{$penalty->days}}</td>
-                                            <td>
-                                            {!! Form::open(['route'=>['admin.pay.penalties',$penalty],'method'=>'post']) !!}
-                                            {!! Form::submit('Potwierdź opłate') !!}
-                                            {!! Form::close() !!}
-                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -48,7 +43,7 @@
                             {{$penalties->links()}}
                             @endif
 
-                            <a href="{{route('admin.index.library'),'Powrót'}}">Powrót</a>
+                            <a href="{{route('admin.index.viewer'),'Powrót'}}">Powrót</a>
                         </div>
                     </div>
                 </div>

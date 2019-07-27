@@ -91,5 +91,18 @@ Route::group([
 Route::group([
     'middleware' => 'viewer',
 ], function(){
-    Route::get('/view','AdminAuth\LibraryController@index')->name('index.viewer');
+    Route::get('/viewer','AdminAuth\ViewerController@index')->name('index.viewer');
+
+    Route::get('/viewer/books','AdminAuth\ViewerController@book_list')->name('book_list.viewer');
+
+    Route::get('/viewer/available','AdminAuth\ViewerController@available')->name('available.viewer');
+
+    Route::get('/viewer/return','AdminAuth\ViewerController@return_list')->name('return_list.viewer');
+
+    Route::get('/viewer/bookings','AdminAuth\ViewerController@bookings')->name('bookings.viewer');
+
+    Route::get('/viewer/unpaid','AdminAuth\ViewerController@unpaid')->name('unpaid.viewer');
+    Route::get('/viewer/paid','AdminAuth\ViewerController@paid')->name('paid.viewer');
+
+
 });

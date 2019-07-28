@@ -31,7 +31,7 @@
                                         <td>{{$booking->date_from}}</td>
                                         @if($days>0)
                                             <td>{{$days}}</td>
-                                            <td>{{$days}} zł</td>
+                                            <td>{{$penalty}} zł</td>
                                         @endif
 
                                     </tr>

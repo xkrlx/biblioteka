@@ -23,8 +23,10 @@
                                 <span><a href="{{route('admin.index2.user')}}">Lista użytkowników</a></span><br/>
                                 <span><a href="{{route('admin.index.user')}}">Konta oczekujące na aktywacje</a></span><br/>
                                 <span><a href="{{route('admin.delete_accounts.user')}}">Konta do usunięcia</a></span><br/><br/>
+                                <span><a href="{{route('admin.show.arrears_set')}}">Ustawienia kary</a></span><br/><br/>
                                 <span><a href="{{route('admin.unpaid.penalties')}}">Nieopłacone kary</a></span><br/>
                                 <span><a href="{{route('admin.paid.penalties')}}">Opłacone kary</a></span><br/>
+
                             </table>
 
                         </div>

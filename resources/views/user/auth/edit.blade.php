@@ -28,6 +28,15 @@
                 <strong>{{ $errors->first('pesel') }}</strong>
             </span>
                             @endif
+                            <div class="col-sm-12">
+                                {!! Form::label('Podaj hasło') !!}
+                                {!! Form::password('current',null) !!}
+                            </div>
+                            @if ($errors->has('current'))
+                                <span class="help-block">
+                <strong>{{ $errors->first('current') }}</strong>
+            </span>
+                            @endif
 
                             {!! Form::submit('Zapisz zmiany') !!}
                             {!! link_to(route('user.profile'), 'Powrót') !!}

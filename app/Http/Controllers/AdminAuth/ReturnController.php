@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminAuth;
 
 use App\Arrear;
+use App\ArrearSetting;
 use App\Book;
 use App\Booking;
 use App\User;
@@ -66,11 +67,20 @@ class ReturnController extends Controller
         if($dateDiff<=0){
             $penalty=0;
         }
+        else if($dateDiff<=14){
+            $ArrearSetting=ArrearSetting::where('days',14)->first();
+            $cost_per_day=$ArrearSetting->cost_per_day;
+            $penalty=$dateDiff*$cost_per_day;
+        }
         else if($dateDiff<=30){
-            $penalty=$dateDiff*0.2;
+            $ArrearSetting=ArrearSetting::where('days',30)->first();
+            $cost_per_day=$ArrearSetting->cost_per_day;
+            $penalty=$dateDiff*$cost_per_day;
         }
         else{
-            $penalty=6+($dateDiff-30)*1;
+            $ArrearSetting=ArrearSetting::where('days',90)->first();
+            $cost_per_day=$ArrearSetting->cost_per_day;
+            $penalty=$dateDiff*$cost_per_day;
         }
 
 

@@ -28,20 +28,30 @@ class UsersController extends Controller
     {
         $this->validate($request,[
             'name'=>'required',
-            'email'=>'required|email',
+            'email' => 'required|email|unique:users,email,' . $user->id,
             'pesel' =>'required|pesel',
+            'current' => 'required',
         ],[
             'name.required'=>'Wpisz imię',
             'pesel.required' => 'Podaj numer pesel',
             'pesel.pesel' => 'Podaj prawidłowy pesel',
+            'current.required' => 'Podaj hasło',
+            'email.required' => 'Podaj email',
+            'email.unique' => 'Podany adres email jest już zajęty',
         ]);
 
-        $user->update([
-            'name' =>$request->name,
-            'email' =>$request->email,
-            'pesel' => $request->pesel,
-        ]);
-        return redirect()->route('user.profile')->with('success','Twoje dane zostały zaaktualizowane');
+        if (Hash::check( $request->input('current'), $user->password)){
+            $user->update([
+                'name' =>$request->name,
+                'email' =>$request->email,
+                'pesel' => $request->pesel,
+            ]);
+
+            return redirect()->route('user.profile')->with('success','Twoje dane zostały zaaktualizowane');
+        }
+        else{
+            return redirect()->back()->with('error','Hasło jest nieprawidłowe');
+        }
     }
 
     public function changepassword(User $user)

@@ -10,4 +10,8 @@ class ArrearSetting extends Model
         'days',
         'cost_per_day'
     ];
+    protected $hidden = [
+        'days', 'cost_per_day',
+    ];
+
 }

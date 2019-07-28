@@ -85,12 +85,13 @@ class UsersController extends Controller
     {
         $this->validate($request,[
             'name'=>'required',
-            'email'=>'required|email',
+            'email' => 'required|email|unique:users,email,' . $user->id,
             'pesel' =>'required|pesel',
         ],[
             'name.required'=>'Wpisz imię',
             'pesel.required' => 'Podaj numer pesel',
             'pesel.pesel' => 'Podaj prawidłowy pesel',
+            'email.required' => 'Podaj email',
         ]);
 
         $user->update([

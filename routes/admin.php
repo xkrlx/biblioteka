@@ -84,6 +84,10 @@ Route::group([
     Route::get('/library/paid','AdminAuth\ArrearsController@paid')->name('paid.penalties');
     Route::post('/library/pay/{penalty}','AdminAuth\ArrearsController@pay')->name('pay.penalties');
 
+    Route::get('/library/arrears_set','AdminAuth\ArrearsController@show_arrears_set')->name('show.arrears_set');
+    //Route::get('/library/edit_arrears_set','AdminAuth\ArrearsController@edit')->name('edit.arrears_set');
+    Route::post('/library/arrears_set/{arrears_set}','AdminAuth\ArrearsController@update')->name('update.arrears_set');
+
 });
 
 

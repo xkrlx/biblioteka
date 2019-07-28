@@ -19,7 +19,7 @@ class CreateArrearsTable extends Migration
             $table->foreign('booking_id')->references('id')->on('bookings');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->ondelete('cascade');
-            $table->integer('cost');
+            $table->double('cost',12,2);
             $table->integer('days');
             $table->boolean('paid_status');
             $table->timestamps();

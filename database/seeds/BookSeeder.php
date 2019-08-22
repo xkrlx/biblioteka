@@ -24,6 +24,7 @@ class BookSeeder extends Seeder
                 'publisher' => $faker->state,
                 'pages' => $faker->randomDigit,
                 'description' => $faker->realText(),
+                'category_id' => 1,
 
             ]);
         }

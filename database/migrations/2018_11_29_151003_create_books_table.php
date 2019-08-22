@@ -21,6 +21,7 @@ class CreateBooksTable extends Migration
             $table->string('author');
             $table->string('publisher');
             $table->integer('pages');
+            $table->unsignedinteger('category_id')->references('id')->on('categories');
             $table->longText('description');
             $table->string('photo')->nullable();
             $table->boolean('status')->default(true);

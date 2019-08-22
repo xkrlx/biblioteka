@@ -37,6 +37,9 @@
                                 <b>Autor:</b> {{$book->author}}
                                 </div>
                                 <div class="col-12">
+                                <b>Kategoria:</b> {{$book->category->name}}
+                                </div>
+                                <div class="col-12">
                                 <b>Wydawca:</b> {{$book->publisher}}
                                 </div>
                                 <div class="col-12">

@@ -13,7 +13,8 @@
 
                             <table class="table-responsive">
                                 <span><a href="{{route('admin.add.book')}}">Dodaj książkę</a></span><br/>
-                                <span><a href="{{route('admin.list.book')}}">Lista książek</a></span><br/><br/>
+                                <span><a href="{{route('admin.list.book')}}">Lista książek</a></span><br/>
+                                <span><a href="{{route('admin.categories')}}">Zarządzanie kategoriami</a></span><br/><br/>
                                 <span><a href="{{route('admin.index.booking')}}">Wypożyczenie książki</a></span><br/>
                                 <span><a href="{{route('admin.index.return')}}">Zwrot książki</a></span><br/><br/>
                                 <span><a href="{{route('admin.index.available')}}">Lista dostępnych książek</a></span><br/>

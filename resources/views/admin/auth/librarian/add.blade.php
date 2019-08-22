@@ -38,6 +38,16 @@
                             @endif
                          </div>
                         <div class="col-12">
+                        {!! Form::select('category_id',$categories,null,['placeholder'=>'Kategoria']) !!}
+                        @if ($errors->has('category_id'))
+                            <span class="help-block">
+                <strong>{{ $errors->first('category_id') }}</strong>
+            </span>
+                        @endif
+                        </div>
+
+
+                        <div class="col-12">
                              {!! Form::text('publisher',null,['placeholder'=>'wydawca']) !!}
                              @if ($errors->has('publisher'))
                                 <span class="help-block">

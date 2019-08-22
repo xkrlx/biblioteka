@@ -22,6 +22,7 @@
                                     <th>Tytuł</th>
                                     <th>Rok wydania</th>
                                     <th>Autor</th>
+                                    <th>Kategoria</th>
                                     <th>Wydawnictwo</th>
                                     <th>Opis</th>
                                 </tr>
@@ -33,6 +34,7 @@
                                         <td>{{$book->title}}</td>
                                         <td>{{$book->year}}</td>
                                         <td>{{$book->author}}</td>
+                                        <td>{{$book->category->name}}</td>
                                         <td>{{$book->publisher}}</td>
                                         <td>{{$book->description}}</td>
                                         @if($book->photo)

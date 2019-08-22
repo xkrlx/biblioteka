@@ -11,6 +11,7 @@ class Book extends Model
         'title',
         'year',
         'author',
+        'category_id',
         'publisher',
         'pages',
         'description',
@@ -20,5 +21,10 @@ class Book extends Model
     public function bookings()
     {
         return $this->hasMany(Booking::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

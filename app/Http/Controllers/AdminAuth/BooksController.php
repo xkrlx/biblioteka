@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminAuth;
 
 use App\Book;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -11,8 +12,13 @@ class BooksController extends Controller
 {
     public function create()
     {
-        $book = Book::orderBy('created_at', 'desc')->first();
-        return view('admin.auth.librarian.add',compact('book'));
+        $_categories = Category::where('active',true)->get();
+
+        $categories = [];
+        foreach ($_categories as $category) {
+            $categories += [$category->id=>$category->name];
+        }
+        return view('admin.auth.librarian.add',compact('categories'));
     }
 
     public function store(Request $request)
@@ -22,6 +28,7 @@ class BooksController extends Controller
                 'title' => 'required|max:100',
                 'year' => 'required|integer|digits:4|min:1900|max:2019',
                 'author' => 'required',
+                'category_id' =>'required',
                 'publisher' => 'required',
                 'pages' => 'required|numeric',
                 'description' => 'required|max:250',
@@ -35,7 +42,8 @@ class BooksController extends Controller
                 'year.digits' => 'Rok to 4 cyfry',
                 'year.min' => 'Podaj prawidłowy rok',
                 'year.max' => 'Podaj prawidłowy rok2',
-                'author.required' => 'Wpisz hasło',
+                'author.required' => 'Podaj imie i nazwisko autora',
+                'category_id' => 'Wybierz kategorie',
                 'publisher.required' => 'Podaj nazwe wydawacy',
                 'pages.required' => 'Podaj ilość stron',
                 'pages.numeric' => 'Ilość stron to tylko cyfry',
@@ -57,6 +65,7 @@ class BooksController extends Controller
                 'title' => $request->title,
                 'year' => $request->year,
                 'author' => $request->author,
+                'category_id' => $request->category_id,
                 'publisher' => $request->publisher,
                 'pages' => $request->pages,
                 'description' => $request->description,
@@ -74,7 +83,13 @@ class BooksController extends Controller
 
     public function edit(Book $book)
     {
-        return view('admin.auth.librarian.edit',compact('book'));
+        $_categories = Category::where('active',true)->get();
+
+        $categories = [];
+        foreach ($_categories as $category) {
+            $categories += [$category->id=>$category->name];
+        }
+        return view('admin.auth.librarian.edit',compact('book'),compact('categories'));
     }
 
     public function update(Request $request,Book $book)
@@ -86,6 +101,7 @@ class BooksController extends Controller
             'title'=>'required|max:100',
             'year'=>'required|integer|digits:4|min:1900|max:2019',
             'author'=>'required',
+            'category_id' =>'required',
             'publisher'=>'required',
             'pages'=>'required|integer',
             'description' => 'required|max:250',
@@ -99,6 +115,7 @@ class BooksController extends Controller
             'year.min'=>'Podaj prawidłowy rok',
             'year.max'=>'Podaj prawidłowy rok2',
             'author.required'=>'Wpisz hasło',
+            'category_id' =>'Wybierz kategorie',
             'publisher.required'=>'Podaj nazwe wydawacy',
             'pages.required'=>'Podaj ilość stron',
             'pages.numeric'=>'Ilość stron to tylko cyfry',
@@ -128,6 +145,7 @@ class BooksController extends Controller
             'title' => $request->title,
             'year' => $request->year,
             'author' => $request->author,
+            'category_id' => $request->category_id,
             'publisher' => $request->publisher,
             'pages' => $request->pages,
             'description' => $request->description,

@@ -88,6 +88,10 @@ Route::group([
     //Route::get('/library/edit_arrears_set','AdminAuth\ArrearsController@edit')->name('edit.arrears_set');
     Route::post('/library/arrears_set/{arrears_set}','AdminAuth\ArrearsController@update')->name('update.arrears_set');
 
+    Route::get('/categories','AdminAuth\CategoriesController@index')->name('categories');
+    Route::post('/categories/add','AdminAuth\CategoriesController@store')->name('add.categories');
+    Route::post('/categories/change/{category}','AdminAuth\CategoriesController@change')->name('change.categories');
+
 });
 
 
